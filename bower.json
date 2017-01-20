@@ -1,9 +1,9 @@
 {
-  "name": "angular2-skeleton",
+  "name": "meal-tracker-angular_js",
   "description": "",
   "main": "",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/asonna/meal-tracker-angular_js",
   "ignore": [
     "**/.*",
     "node_modules",
