@@ -5,7 +5,10 @@ import { Food } from './food.model';
   selector: 'food-list',
   template: `
   <ul>
-  <li (click)="isLow(currentFood)" *ngFor="let currentFood of foods">{{currentFood.name}} <button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button></li>
+  <li (click)="isLow(currentFood)" *ngFor="let currentFood of foods">
+  Name:{{currentFood.name}}<button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button><br>
+  Calories: {{currentFood.calories}} <br>
+  Details: {{currentFood.details}}<hr></li>
   </ul>
   `
 })
