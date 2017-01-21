@@ -5,27 +5,12 @@ import { Food } from './food.model';
   selector: 'app-root',
   template: `
   <div class="container">
-    <h1>Meal Tracker Application for {{month}}/{{day}}/{{year}}</h1>
+    <h1>Meal Tracker Application on {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
 
     <food-list [childFoodList]="masterFoodList" (clickSender)="editFood($event)"></food-list>
     <hr>
-    <div>
-      <div *ngIf="selectedFood">
-        <h3>{{selectedFood.name}}</h3>
-        <p>Food Low in calories? {{selectedFood.low}}</p>
-        <hr>
-        <h3>Edit Food</h3>
-        <label>Enter Food Name:</label>
-        <input [(ngModel)]="selectedFood.name">
-        <label>Enter Food details:</label>
-        <input [(ngModel)]="selectedFood.details">
-        <label>Enter Food calories:</label>
-        <input [(ngModel)]="selectedFood.calorie">
-
-        <button (click)="finishedEditing()">Done</button>
-      </div>
-    </div>
+    <edit-food [childSelectedFood]="selectedFood" (doneButtonClickedSender)="finishedEditing()"></edit-food>
   </div>
   `
 })
@@ -43,16 +28,11 @@ export class AppComponent {
     new Food('Fries', 'I only ate half of them.', 365)
   ];
 
-  // editFood(clickedFood) {
-  //   this.selectedFood = clickedFood;
-  // }
-  //
-  // finishedEditing() {
-  //   this.selectedFood = null;
-  // }
-}
+  editFood(clickedFood) {
+    this.selectedFood = clickedFood;
+  }
 
-// export class Food {
-//   public low: boolean = false;
-//   constructor(public name: string, public details: string, public calories: number) { }
-// }
+  finishedEditing() {
+    this.selectedFood = null;
+  }
+}
