@@ -6,27 +6,23 @@ import {Food} from './food.model';
   pure: false
 })
 
-
 export class LowcaloriesPipe implements PipeTransform {
   transform(input: Food[], desiredCaloriesLevel) {
-    var output: Food[] = [];
+    var lowCalories: Food[] = [];
+    var highCalories: Food[] = [];
+
+    for (var i=0; i < input.length; i++) {
+      if (input[i].calories >= 500) {
+        highCalories.push(input[i]);
+      }else {
+        lowCalories.push(input[i]);
+      }
+    }
+
     if(desiredCaloriesLevel === "highCalories") {
-      for (var i=0; i < input.length; i++) {
-        if (parseInt(input[i].details) >= 500) {
-          document.write(input[i].details);
-          input[i].low === false;
-          output.push(input[i]);
-        }
-      }
-      return output;
+      return highCalories;
     } else if (desiredCaloriesLevel === "lowCalories") {
-      for (var i = 0; i < input.length; i++) {
-        if (parseInt(input[i].details) < 500) {
-          input[i].low === true;
-          output.push(input[i]);
-        }
-      }
-      return output;
+      return lowCalories;
     } else {
       return input;
     }

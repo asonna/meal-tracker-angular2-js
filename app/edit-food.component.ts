@@ -6,9 +6,6 @@ import { Food } from './food.model';
   template: `
     <div>
       <div *ngIf="childSelectedFood">
-        <h3>{{childSelectedFood.name}}</h3>
-        <p>Food Low in calories? {{childSelectedFood.low}}</p>
-        <hr>
         <h3>Edit Food</h3>
         <label>Enter Food Name:</label>
         <input [(ngModel)]="childSelectedFood.name">

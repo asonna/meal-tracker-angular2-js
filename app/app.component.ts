@@ -26,7 +26,7 @@ export class AppComponent {
 
   masterFoodList: Food[] = [
     new Food('Hamburger', 'Did not get a soda or cheese on my burger!', 354),
-    new Food('Fries', 'I only ate half of them.', 365)
+    new Food('Fries', 'I only ate half of them.', 565)
   ];
 
   editFood(clickedFood) {

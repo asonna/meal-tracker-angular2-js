@@ -5,15 +5,15 @@ import { Food } from './food.model';
   selector: 'food-list',
   template: `
     <select (change)="onChange($event.target.value)">
-      <option value="allFoods">All Foods</option>
-      <option value="lowcalories">Low Calories Foods</option>
-      <option value="highCalories" selected="selected">High Calories Foods</option>
+      <option value="allFoods" selected="selected">Show All Foods</option>
+      <option value="lowCalories">Show Low Calories Foods</option>
+      <option value="highCalories">Show High Calories Foods</option>
     </select><br><br>
 
     <ul>
       <li *ngFor="let currentFood of childFoodList | lowcalories:filterByLowcalories">
-      Name:{{currentFood.name}}<button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button><br>
-      Calories: {{currentFood.calories}} <br>
+      Name:{{currentFood.name}} <button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button><br>
+      Calories: {{currentFood.calories}}<br>
       Details: {{currentFood.details}}<hr></li>
     </ul>
   `
@@ -22,22 +22,19 @@ import { Food } from './food.model';
 export class FoodListComponent {
   @Input() childFoodList: Food[];
   @Output() clickSender = new EventEmitter();
-  filterByLowcalories: string = "highCalories";
+
+  filterByLowcalories: string = "allFoods";
 
   editButtonHasBeenClicked(foodToEdit: Food) {
     this.clickSender.emit(foodToEdit);
   }
 
-  isLow(clickedFood: Food) {
-    if(clickedFood.low === true) {
-      alert("This food is low in calories!");
-    } else {
-      alert("This food is high in calories. You may want to exercise some out!");
-    }
-  }
-
-  onChange(optionFromMenu) {
+  onChange(optionFromMenu: string) {
     this.filterByLowcalories = optionFromMenu;
   }
+
+  toggleDone(clickedFood: Food, setLowcalories: boolean) {
+     clickedFood.low = setLowcalories;
+   }
 
 }
