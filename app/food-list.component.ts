@@ -12,7 +12,7 @@ import { Food } from './food.model';
 
     <ul>
       <li *ngFor="let currentFood of childFoodList | lowcalories:filterByLowcalories">
-      Name:{{currentFood.name}} <button (click)="editButtonHasBeenClicked(currentFood)">Edit!</button><br>
+      Name:{{currentFood.name}} <button (click)="editButtonHasBeenClicked(currentFood)" class="btn btn-primary btn-spacer">Edit!</button><br>
       Calories: {{currentFood.calories}}<br>
       Details: {{currentFood.details}}<hr></li>
     </ul>
